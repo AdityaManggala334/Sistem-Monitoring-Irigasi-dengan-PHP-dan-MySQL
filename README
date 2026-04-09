@@ -1,0 +1,149 @@
+Sistem Monitoring Irigasi Sawah
+Deskripsi
+
+Proyek ini merupakan aplikasi berbasis web yang dibuat menggunakan PHSistem Monitoring Irigasi Sawah
+Deskripsi
+
+Proyek ini merupakan aplikasi berbasis web yang dibuat menggunakan PHP dan MySQL. Sistem ini dirancang untuk melakukan autentikasi pengguna serta sebagai dasar pengembangan sistem monitoring irigasi secara digital.
+
+Dalam implementasinya, aplikasi ini memanfaatkan konsep client-server, di mana data dari pengguna diproses oleh server menggunakan PHP dan disimpan ke dalam database MySQL.
+
+Penjelasan Struktur dan Kode Program
+koneksi.php
+
+File ini berfungsi sebagai penghubung antara aplikasi dengan database MySQL.
+
+Di dalam file ini didefinisikan beberapa variabel seperti host, username, password, dan nama database. Kemudian digunakan fungsi mysqli_connect untuk membuka koneksi ke database.
+
+Jika koneksi gagal, program akan langsung dihentikan menggunakan fungsi die dan menampilkan pesan error dari mysqli_connect_error. Hal ini bertujuan agar kesalahan dapat segera diketahui.
+
+prosesregistrasi.php
+
+File ini digunakan untuk memproses data yang dikirim dari form registrasi.
+
+Pertama, file koneksi dipanggil agar dapat mengakses database. Kemudian sistem melakukan pengecekan apakah tombol register benar-benar ditekan, sehingga file tidak bisa diakses secara langsung melalui URL.
+
+Data yang diinput pengguna disaring menggunakan mysqli_real_escape_string untuk mencegah serangan SQL Injection. Setelah itu, dilakukan pengecekan apakah username atau email sudah terdaftar menggunakan mysqli_num_rows.
+
+Jika data belum ada, maka password akan diamankan menggunakan password_hash sebelum disimpan ke database. Penyimpanan dilakukan dengan perintah INSERT INTO. Setelah berhasil, pengguna akan diarahkan kembali ke halaman login.
+
+proseslogin.php
+
+File ini berfungsi untuk memverifikasi data login pengguna.
+
+Pertama, session dimulai menggunakan session_start agar data pengguna dapat disimpan selama proses login berlangsung. Kemudian file koneksi dipanggil.
+
+Input dari pengguna kembali diamankan menggunakan mysqli_real_escape_string. Sistem kemudian mencari data pengguna di database berdasarkan username atau email.
+
+Jika data ditemukan, maka password yang dimasukkan akan dicocokkan menggunakan password_verify. Jika sesuai, maka data pengguna disimpan ke dalam session dan pengguna diarahkan ke halaman dashboard.
+
+Jika tidak sesuai, pengguna akan dikembalikan ke halaman login dengan pesan kesalahan.
+
+logout.php
+
+File ini digunakan untuk mengakhiri sesi login pengguna.
+
+Session yang sedang aktif akan diambil menggunakan session_start, kemudian dihapus menggunakan session_destroy. Setelah itu, pengguna diarahkan kembali ke halaman login.
+
+Hal ini penting untuk menjaga keamanan agar akun tidak tetap aktif setelah digunakan.
+
+index.php
+
+File ini merupakan halaman utama atau dashboard yang hanya bisa diakses setelah login.
+
+Session dijalankan terlebih dahulu agar data pengguna bisa digunakan. Kemudian dilakukan pengecekan apakah session username tersedia.
+
+Jika tidak ada, maka pengguna akan langsung diarahkan kembali ke halaman login. Dengan cara ini, halaman dashboard tidak bisa diakses tanpa autentikasi.
+
+login.php
+
+File ini berfungsi sebagai tampilan utama untuk login dan registrasi.
+
+Di dalam file ini terdapat logika PHP untuk menampilkan pesan berdasarkan parameter yang dikirim melalui URL. Misalnya ketika registrasi berhasil atau ketika terjadi kesalahan saat login.
+
+Hal ini membuat interaksi dengan pengguna menjadi lebih informatif karena sistem dapat memberikan umpan balik secara langsung.
+
+Konsep yang Digunakan
+
+Beberapa konsep penting yang diterapkan dalam proyek ini antara lain:
+
+Penggunaan session untuk mengelola status login pengguna
+Pengamanan password menggunakan hashing
+Validasi input untuk mencegah kesalahan dan serangan
+Interaksi dengan database menggunakan MySQL
+Kesimpulan
+
+Berdasarkan hasil praktikum yang dilakukan, dapat disimpulkan bahwa PHP dan MySQL dapat digunakan secara efektif untuk membangun sistem autentikasi berbasis web.
+
+Penggunaan session sangat penting dalam menjaga akses halaman, sedangkan penggunaan hashing pada password memberikan tingkat keamanan yang lebih baik. Sistem ini sudah mampu menjalankan fungsi dasar autentikasi dengan baik dan dapat dikembangkan lebih lanjut.P dan MySQL. Sistem ini dirancang untuk melakukan autentikasi pengguna serta sebagai dasar pengembangan sistem monitoring irigasi secara digital.
+
+Dalam implementasinya, aplikasi ini memanfaatkan konsep client-server, di mana data dari pengguna diproses oleh server menggunakan PHP dan disimpan ke dalam database MySQL.
+
+Penjelasan Struktur dan Kode Program
+koneksi.php
+
+File ini berfungsi sebagai penghubung antara aplikasi dengan database MySQL.
+
+Di dalam file ini didefinisikan beberapa variabel seperti host, username, password, dan nama database. Kemudian digunakan fungsi mysqli_connect untuk membuka koneksi ke database.
+
+Jika koneksi gagal, program akan langsung dihentikan menggunakan fungsi die dan menampilkan pesan error dari mysqli_connect_error. Hal ini bertujuan agar kesalahan dapat segera diketahui.
+
+prosesregistrasi.php
+
+File ini digunakan untuk memproses data yang dikirim dari form registrasi.
+
+Pertama, file koneksi dipanggil agar dapat mengakses database. Kemudian sistem melakukan pengecekan apakah tombol register benar-benar ditekan, sehingga file tidak bisa diakses secara langsung melalui URL.
+
+Data yang diinput pengguna disaring menggunakan mysqli_real_escape_string untuk mencegah serangan SQL Injection. Setelah itu, dilakukan pengecekan apakah username atau email sudah terdaftar menggunakan mysqli_num_rows.
+
+Jika data belum ada, maka password akan diamankan menggunakan password_hash sebelum disimpan ke database. Penyimpanan dilakukan dengan perintah INSERT INTO. Setelah berhasil, pengguna akan diarahkan kembali ke halaman login.
+
+proseslogin.php
+
+File ini berfungsi untuk memverifikasi data login pengguna.
+
+Pertama, session dimulai menggunakan session_start agar data pengguna dapat disimpan selama proses login berlangsung. Kemudian file koneksi dipanggil.
+
+Input dari pengguna kembali diamankan menggunakan mysqli_real_escape_string. Sistem kemudian mencari data pengguna di database berdasarkan username atau email.
+
+Jika data ditemukan, maka password yang dimasukkan akan dicocokkan menggunakan password_verify. Jika sesuai, maka data pengguna disimpan ke dalam session dan pengguna diarahkan ke halaman dashboard.
+
+Jika tidak sesuai, pengguna akan dikembalikan ke halaman login dengan pesan kesalahan.
+
+logout.php
+
+File ini digunakan untuk mengakhiri sesi login pengguna.
+
+Session yang sedang aktif akan diambil menggunakan session_start, kemudian dihapus menggunakan session_destroy. Setelah itu, pengguna diarahkan kembali ke halaman login.
+
+Hal ini penting untuk menjaga keamanan agar akun tidak tetap aktif setelah digunakan.
+
+index.php
+
+File ini merupakan halaman utama atau dashboard yang hanya bisa diakses setelah login.
+
+Session dijalankan terlebih dahulu agar data pengguna bisa digunakan. Kemudian dilakukan pengecekan apakah session username tersedia.
+
+Jika tidak ada, maka pengguna akan langsung diarahkan kembali ke halaman login. Dengan cara ini, halaman dashboard tidak bisa diakses tanpa autentikasi.
+
+login.php
+
+File ini berfungsi sebagai tampilan utama untuk login dan registrasi.
+
+Di dalam file ini terdapat logika PHP untuk menampilkan pesan berdasarkan parameter yang dikirim melalui URL. Misalnya ketika registrasi berhasil atau ketika terjadi kesalahan saat login.
+
+Hal ini membuat interaksi dengan pengguna menjadi lebih informatif karena sistem dapat memberikan umpan balik secara langsung.
+
+Konsep yang Digunakan
+
+Beberapa konsep penting yang diterapkan dalam proyek ini antara lain:
+
+Penggunaan session untuk mengelola status login pengguna
+Pengamanan password menggunakan hashing
+Validasi input untuk mencegah kesalahan dan serangan
+Interaksi dengan database menggunakan MySQL
+Kesimpulan
+
+Berdasarkan hasil praktikum yang dilakukan, dapat disimpulkan bahwa PHP dan MySQL dapat digunakan secara efektif untuk membangun sistem autentikasi berbasis web.
+
+Penggunaan session sangat penting dalam menjaga akses halaman, sedangkan penggunaan hashing pada password memberikan tingkat keamanan yang lebih baik. Sistem ini sudah mampu menjalankan fungsi dasar autentikasi dengan baik dan dapat dikembangkan lebih lanjut.
