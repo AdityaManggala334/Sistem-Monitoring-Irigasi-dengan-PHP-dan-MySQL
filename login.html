@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registrasi — SM Irigasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; }
+        .tab-aktif { background-color: #2e7d32; color: #fff; }
+        .tab-nonaktif { background-color: #e8f5e9; color: #2e7d32; }
+        .panel { display: none; }
+        .panel.aktif { display: block; }
+        input:focus, select:focus { outline: none; border-color: #2e7d32; box-shadow: 0 0 0 3px rgba(46,125,50,0.2); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col" style="background-color:#e8f5e9;">
+
+    <nav style="background-color:#2e7d32;" class="shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="text-white font-bold text-xl">💧 SM Irigasi</a>
+            <div class="hidden md:flex gap-6 text-sm" style="color:#c8e6c9;">
+                <a href="index.html#monitoring" class="hover:text-white transition">Monitoring</a>
+                <a href="peta-sensor.html" class="hover:text-white transition">Peta Sensor</a>
+                <a href="riwayat.html" class="hover:text-white transition">Riwayat</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 flex items-center justify-center py-10 px-4">
+        <div class="w-full max-w-md">
+
+            <div class="text-center mb-6">
+                <div class="text-5xl mb-2">💧</div>
+                <h1 class="text-2xl font-bold" style="color:#1b5e20;">SM Irigasi</h1>
+                <p class="text-gray-500 text-sm mt-1">Sistem Monitoring Irigasi Sawah Berbasis Sensor</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="flex">
+                    <button id="tab-login" onclick="tampilTab('login')"
+                        class="flex-1 py-3 text-sm font-semibold transition tab-aktif rounded-tl-2xl">
+                        🔑 Masuk
+                    </button>
+                    <button id="tab-register" onclick="tampilTab('register')"
+                        class="flex-1 py-3 text-sm font-semibold transition tab-nonaktif rounded-tr-2xl">
+                        📝 Daftar Akun
+                    </button>
+                </div>
+
+                <div id="panel-login" class="panel aktif p-6">
+                    <h2 class="text-lg font-bold mb-4" style="color:#1b5e20;">Masuk ke Sistem</h2>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Username / Email</label>
+                        <input type="text" id="login-user" placeholder="Masukkan username"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="login-pass" placeholder="Masukkan password"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm pr-10 transition">
+                            <button onclick="togglePassword('login-pass',this)"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">👁</button>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between mb-5">
+                        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                            <input type="checkbox"> Ingat saya
+                        </label>
+                        <a href="#" class="text-sm hover:underline" style="color:#2e7d32;">Lupa password?</a>
+                    </div>
+                    <button onclick="prosesLogin()"
+                        class="w-full text-white font-semibold py-2.5 rounded-lg transition text-sm"
+                        style="background-color:#2e7d32;" onmouseover="this.style.backgroundColor='#1b5e20'" onmouseout="this.style.backgroundColor='#2e7d32'">
+                        Masuk ke Sistem
+                    </button>
+                    <div id="pesan-login" class="hidden mt-3 p-3 rounded-lg text-sm text-center"></div>
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        Belum punya akun?
+                        <button onclick="tampilTab('register')" class="font-semibold hover:underline" style="color:#2e7d32;">Daftar sekarang</button>
+                    </p>
+                </div>
+
+                <div id="panel-register" class="panel p-6">
+                    <h2 class="text-lg font-bold mb-4" style="color:#1b5e20;">Buat Akun Baru</h2>
+                    <div class="grid grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Depan</label>
+                            <input type="text" id="reg-nama-depan" placeholder="Nama depan"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Belakang</label>
+                            <input type="text" id="reg-nama-belakang" placeholder="Nama belakang"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="reg-email" placeholder="contoh@email.com"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input type="text" id="reg-username" placeholder="Buat username unik"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Role / Jabatan</label>
+                        <select id="reg-role" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm bg-white transition">
+                            <option value="">-- Pilih Role --</option>
+                            <option>Petugas Lapangan</option>
+                            <option>Koordinator Irigasi</option>
+                            <option>Petani</option>
+                            <option>Administrator</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <input type="password" id="reg-pass" placeholder="Min. 8 karakter"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm pr-10 transition"
+                                oninput="cekKekuatan(this.value)">
+                            <button onclick="togglePassword('reg-pass',this)"
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">👁</button>
+                        </div>
+                        <div class="mt-1.5 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                            <div id="strength-bar" class="h-full w-0 rounded-full transition-all duration-300"></div>
+                        </div>
+                        <p id="strength-label" class="text-xs text-gray-400 mt-0.5"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Konfirmasi Password</label>
+                        <input type="password" id="reg-konfirmasi" placeholder="Ulangi password"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm transition">
+                    </div>
+                    <label class="flex items-start gap-2 text-sm text-gray-600 mb-4 cursor-pointer">
+                        <input type="checkbox" id="reg-setuju" class="mt-0.5">
+                        <span>Saya menyetujui <a href="#" class="hover:underline" style="color:#2e7d32;">Syarat &amp; Ketentuan</a> penggunaan sistem ini.</span>
+                    </label>
+                    <button onclick="prosesRegister()"
+                        class="w-full text-white font-semibold py-2.5 rounded-lg transition text-sm"
+                        style="background-color:#2e7d32;" onmouseover="this.style.backgroundColor='#1b5e20'" onmouseout="this.style.backgroundColor='#2e7d32'">
+                        Daftar Sekarang
+                    </button>
+                    <div id="pesan-register" class="hidden mt-3 p-3 rounded-lg text-sm text-center"></div>
+                    <p class="text-center text-sm text-gray-500 mt-4">
+                        Sudah punya akun?
+                        <button onclick="tampilTab('login')" class="font-semibold hover:underline" style="color:#2e7d32;">Masuk di sini</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-4 bg-white bg-opacity-70 rounded-xl p-3 text-center">
+                <p class="text-xs text-gray-500">🔑 <strong>Demo:</strong> username <code class="bg-gray-100 px-1 rounded">admin</code> / password <code class="bg-gray-100 px-1 rounded">admin123</code></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center text-xs py-3 text-green-100" style="background-color:#1b5e20;">
+        © 2026 SM Irigasi — Universitas Sebelas Maret · Sistem Monitoring Irigasi Sawah
+    </footer>
+
+    <script>
+        function tampilTab(tab) {
+            document.getElementById('panel-login').classList.toggle('aktif', tab === 'login');
+            document.getElementById('panel-register').classList.toggle('aktif', tab === 'register');
+            document.getElementById('tab-login').className    = 'flex-1 py-3 text-sm font-semibold transition rounded-tl-2xl ' + (tab === 'login' ? 'tab-aktif' : 'tab-nonaktif');
+            document.getElementById('tab-register').className = 'flex-1 py-3 text-sm font-semibold transition rounded-tr-2xl ' + (tab === 'register' ? 'tab-aktif' : 'tab-nonaktif');
+        }
+        function togglePassword(id, btn) {
+            var el = document.getElementById(id);
+            el.type = el.type === 'password' ? 'text' : 'password';
+            btn.textContent = el.type === 'password' ? '👁' : '🙈';
+        }
+        function cekKekuatan(pass) {
+            var skor = 0;
+            if (pass.length >= 8) skor++;
+            if (/[A-Z]/.test(pass)) skor++;
+            if (/[0-9]/.test(pass)) skor++;
+            if (/[^A-Za-z0-9]/.test(pass)) skor++;
+            var warna = ['','bg-red-500','bg-orange-400','bg-yellow-400','bg-green-500'];
+            var level = ['','Sangat Lemah 😟','Lemah 😐','Sedang 🙂','Kuat 💪'];
+            var lebar = ['0%','25%','50%','75%','100%'];
+            var bar = document.getElementById('strength-bar');
+            bar.className = 'h-full rounded-full transition-all duration-300 ' + (warna[skor]||'');
+            bar.style.width = lebar[skor]||'0%';
+            document.getElementById('strength-label').textContent = pass.length ? (level[skor]||'') : '';
+        }
+        function prosesLogin() {
+            var user = document.getElementById('login-user').value.trim();
+            var pass = document.getElementById('login-pass').value.trim();
+            var pesan = document.getElementById('pesan-login');
+            if (!user || !pass) { tampilPesan(pesan,'Mohon isi semua kolom.','error'); return; }
+            if (user === 'admin' && pass === 'admin123') {
+                tampilPesan(pesan,'✅ Login berhasil! Mengarahkan ke dashboard...','sukses');
+                setTimeout(function(){ window.location.href='index.html'; }, 1500);
+            } else {
+                tampilPesan(pesan,'❌ Username atau password salah. Coba lagi.','error');
+            }
+        }
+        function prosesRegister() {
+            var namaD = document.getElementById('reg-nama-depan').value.trim();
+            var namaB = document.getElementById('reg-nama-belakang').value.trim();
+            var email = document.getElementById('reg-email').value.trim();
+            var user  = document.getElementById('reg-username').value.trim();
+            var role  = document.getElementById('reg-role').value;
+            var pass  = document.getElementById('reg-pass').value;
+            var konfirm = document.getElementById('reg-konfirmasi').value;
+            var setuju = document.getElementById('reg-setuju').checked;
+            var pesan  = document.getElementById('pesan-register');
+            if (!namaD||!namaB||!email||!user||!role||!pass||!konfirm) { tampilPesan(pesan,'Mohon lengkapi semua kolom.','error'); return; }
+            if (pass.length < 8) { tampilPesan(pesan,'Password minimal 8 karakter.','error'); return; }
+            if (pass !== konfirm) { tampilPesan(pesan,'Password dan konfirmasi tidak cocok.','error'); return; }
+            if (!setuju) { tampilPesan(pesan,'Silakan setujui syarat & ketentuan.','error'); return; }
+            tampilPesan(pesan,'✅ Akun berhasil dibuat! Silakan login.','sukses');
+            setTimeout(function(){ tampilTab('login'); }, 2000);
+        }
+        function tampilPesan(el, teks, tipe) {
+            el.classList.remove('hidden');
+            el.className = 'mt-3 p-3 rounded-lg text-sm text-center ' + (tipe === 'sukses' ? 'bg-green-50 border border-green-400 text-green-800' : 'bg-red-50 border border-red-400 text-red-800');
+            el.textContent = teks;
+        }
+    </script>
+</body>
+</html>

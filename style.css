@@ -1,0 +1,349 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+
+nav {
+    background-color: #2e7d32;
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+.nav-menu {
+    list-style: none; 
+    display: flex;
+    gap: 5px;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+
+.nav-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+#hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+
+#hero img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+#hero h1 {
+    color: #1b5e20;
+    font-size: 1.8rem;
+    margin-bottom: 14px;
+    margin-top: 10px;
+}
+
+#hero p {
+    color: #555;
+    font-size: 1rem;
+    max-width: 650px;
+    margin: 0 auto 20px auto;
+    line-height: 1.7;
+}
+
+
+.btn-utama {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: #ffc107; 
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-utama:hover {
+    background-color: #e0a800;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: transparent;
+    color: #2e7d32;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid #2e7d32;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: #2e7d32;
+    color: white;
+}
+
+
+#tentang,
+#fitur,
+#monitoring,
+#lapor {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+#tentang h2,
+#fitur h2,
+#monitoring h2,
+#lapor h2 {
+    color: #1b5e20;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #2e7d32;
+    display: inline-block;
+}
+
+#tentang h3,
+#fitur h3,
+#monitoring h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin: 20px 0 10px 0;
+}
+
+#tentang p,
+#fitur p,
+#monitoring p,
+#lapor p {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #444;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px 14px;
+    text-align: left;
+}
+
+
+th {
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e8f5e9;
+}
+
+
+.status-normal { color: #2e7d32; font-weight: bold; }
+.status-tinggi  { color: #0277bd; font-weight: bold; }
+.status-rendah  { color: #e65100; font-weight: bold; }
+.status-kritis  { color: #b71c1c; font-weight: bold; }
+
+
+.daftar-lokasi {
+    background-color: #e8f5e9;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.daftar-lokasi ul {
+    list-style-type: disc;
+    padding-left: 22px;
+    margin: 0;
+}
+
+.daftar-lokasi li {
+    padding: 5px 0;
+    color: #333;
+}
+
+.daftar-lokasi a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.daftar-lokasi a:hover {
+    color: #1b5e20;
+}
+
+
+#fitur ul {
+    list-style-type: disc;
+    padding-left: 22px;
+    margin-bottom: 20px;
+}
+
+#fitur ul li {
+    padding: 6px 0;
+    line-height: 1.6;
+    color: #444;
+}
+
+
+.form-section {
+    background-color: #ffffff;
+    padding: 20px 24px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-top: 16px;
+}
+
+
+.form-section input[type="text"],
+.form-section select {
+    display: block;
+    width: calc(100% - 140px); 
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+}
+
+
+.form-section input[type="text"]:focus,
+.form-section select:focus {
+    border-color: #2e7d32;
+    outline: none;
+}
+
+
+.form-section button {
+    padding: 10px 24px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    display: block;
+    margin-top: 6px;
+}
+
+.form-section button:hover {
+    background-color: #1b5e20;
+}
+
+
+#pesan-form {
+    display: none;
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+
+footer {
+    background-color: #2e7d32;
+    color: white;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 0.88rem;
+    margin-top: 20px;
+}
+
+
+@media (max-width: 640px) {
+    .container {
+        padding: 16px;
+        margin: 10px;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    #hero h1 {
+        font-size: 1.3rem;
+    }
+
+    .form-section input[type="text"],
+    .form-section select {
+        width: 100%;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+}
